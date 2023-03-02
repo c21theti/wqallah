@@ -17,12 +17,18 @@ public class Person extends Thread{
 	@Override
 	public void run() {
 		
+		// Det som vi behöver göra här är att skapa en boolean för om arbetaren är på break eller inte
+		//Tex när man börjar jobba så ska energy >= 30
+		//Men när man drar på break så ska personen inte jobba förns energin är på 100 eller över
+		//Det måste vi göra
+		
 		// The energy worker starts with, if energy is 0 worker goes home
 		while (energy > 0) {
 			
-			if (energy >= 30) {
-				System.out.println(name + " is working with " + energy + " energy.");
-				
+			if (energy >= 100 ) { // om dom Ã¤r Ã¶ver hundra och i listan
+				// If energy is at least 100 energy go back to work 
+				System.out.println(name + " goes back to work with energy level " + energy);
+				queue.remove(this);
 			}
 			
 			else if (energy < 30 && !queue.contains(this)) { // If energy is below 30 worker takes a break
@@ -31,10 +37,9 @@ public class Person extends Thread{
 				
 			}
 			
-			else if (energy >= 100 ) { // om dom Ã¤r Ã¶ver hundra och i listan
-				// If energy is at least 100 energy go back to work 
-				System.out.println(name + " goes back to work with energy level " + energy);
-				queue.remove(this);
+			else if (energy >= 30) { // ska köras tills engerin är 100
+				System.out.println(name + " is working with " + energy + " energy.");
+				
 			}
 			
 			try {

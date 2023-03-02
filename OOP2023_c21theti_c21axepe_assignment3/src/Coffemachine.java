@@ -18,6 +18,7 @@ public class Coffemachine extends Thread{
 			this.queue = queue; 
 		}
 		
+ 		
 	@Override
 	public void run() {
 
@@ -37,19 +38,19 @@ public class Coffemachine extends Thread{
 			int option = r.nextInt(3-0) + 0; // randomizar vilken kaffe det blir
 			makeCoffee(option); // 
 			
-			System.out.println("We have created the coffee");
+			System.out.println("Drink created. Coffee Machine has " + coffee.size() + " in reserve");
 			
 			// eftersom att man inte ska kunna dricka kaffe om kön eller kaffereservoiren är tom
 	if (queue.peek() != null && coffee.peek() != null) { // så länge kön inte är tom och det finns kaffe i reservouiren körs denna, peek kollar om det finns någon tillagd
+		System.out.println(queue.element().getName() +  " enjoyed a " + coffee.element().getName() + " with " + coffee.element().getEnergy() + " energy");
 		Person coffeeDrinker = queue.poll(); // poll tar bort senaste ur kön
 		drink(coffeeDrinker); // vi kör denna funktion och tilldelar energin som sagt nedan till den som ska ha kaffe
-		System.out.println("We have added the energy");
+		coffee.remove(); // removes coffee if drinked
+		System.out.println("Coffee Machine has " + coffee.size() + " drinks in reserve.");
 	}			
 			// queue.peek();  använder vi för att kolla om det finns något i kön. // The machine can deliver one drink to one worker each second, as long as there is at least one drink in the reserve
 		}
-			System.out.println("Drink created. Coffee Machine has" + "" + "in reserve");
-			System.out.println("" + "enjoyed a" + "" + " with" + "" + "energy");
-			System.out.println("Coffee Machine has" + "" + "drinks in reserve.");
+			
 	}
 	
 	public void makeCoffee(int option) {
@@ -64,7 +65,6 @@ public class Coffemachine extends Thread{
 			coffee.add(cappuccino); // lägger till kaffet i vector listan
 			break;
 		default:
-			System.out.println("case3");
 			Latte latte = new Latte();
 			coffee.add(latte); // lägger till kaffet i vector listan
 			break;
