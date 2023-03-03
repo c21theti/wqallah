@@ -17,45 +17,44 @@ public class Person extends Thread{
 	@Override
 	public void run() {
 		
-		// Det som vi behˆver gˆra h‰r ‰r att skapa en boolean fˆr om arbetaren ‰r pÂ break eller inte
-		//Tex n‰r man bˆrjar jobba sÂ ska energy >= 30
-		//Men n‰r man drar pÂ break sÂ ska personen inte jobba fˆrns energin ‰r pÂ 100 eller ˆver
-		//Det mÂste vi gˆra
+		// Det som vi behÔøΩver gÔøΩra hÔøΩr ÔøΩr att skapa en boolean fÔøΩr om arbetaren ÔøΩr pÔøΩ break eller inte
+		//Tex nÔøΩr man bÔøΩrjar jobba sÔøΩ ska energy >= 30
+		//Men nÔøΩr man drar pÔøΩ break sÔøΩ ska personen inte jobba fÔøΩrns energin ÔøΩr pÔøΩ 100 eller ÔøΩver
+		//Det mÔøΩste vi gÔøΩra
 		
 		// The energy worker starts with, if energy is 0 worker goes home
 		while (energy > 0) {
 			
-			if (energy >= 100 ) { // om dom √§r √∂ver hundra och i listan
-				// If energy is at least 100 energy go back to work 
+			if (energy >= 100 ) {// If energy is at least 100 energy go back to work 
 				System.out.println(name + " goes back to work with energy level " + energy);
 				queue.remove(this);
 			}
 			
 			else if (energy < 30 && !queue.contains(this)) { // If energy is below 30 worker takes a break
 				System.out.println(name + " is taking a break with energy level " + energy);
-				queue.add(this); // l√§gger till workern i k√∂n n√§r den har energi under 30
+				queue.add(this); // Adds the person to the queue in CoffeMachine.java
 				
 			}
 			
-			else if (energy >= 30) { // ska kˆras tills engerin ‰r 100
+			else if (energy >= 30) { // Runs when energy is over or 30
 				System.out.println(name + " is working with " + energy + " energy.");
 				
 			}
 			
 			try {
-				loseEnergy();	
+				loseEnergy();
 				sleep(time);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
 		}
-		System.out.println(name + " went home");
+		System.out.println(name + " went home"); // Runs if energy goes out
 	}
 	
 	// removes 1 from energy
 	public void loseEnergy(){
-		energy--; // ta bort 1 fr√•n energy	
+		energy--;
 	}
 	
 	// Adds random number between 30-90

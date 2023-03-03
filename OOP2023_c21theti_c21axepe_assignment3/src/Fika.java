@@ -2,24 +2,22 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Fika{
 	
-	// for variables 
+	ConcurrentLinkedQueue<Person> queue = new ConcurrentLinkedQueue<Person>(); // New queue
 	
-	ConcurrentLinkedQueue<Person> queue = new ConcurrentLinkedQueue<Person>(); // här skapar vi en ny kö
-	
-	public Fika() { // Ingen aning vad den gör här tbh
+	public Fika() {
 		
 	}
 	
 
 	public void init() { // 
 		
-		// eftersom varje arbetare har en start(); så har alla en separat thread
+		//All threads
 		//Adds workers and their startenergy, and time for the energy
 		Person kulan = new Person(queue);
 		kulan.giveName("Kulan");
 		kulan.generateTime();
 		kulan.startEnergy();
-		kulan.start();
+		kulan.start(); // Starts the independent thread
 		
 		Person jonsson = new Person(queue);
 		jonsson.giveName("Jonsson");
