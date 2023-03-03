@@ -41,13 +41,21 @@ public class Coffemachine extends Thread {
 			if (queue.peek() != null && coffee.peek() != null) { // As long as the queue is not empty and there is
 																	// coffee this will run, Peek checks the first
 																	// object in the queue
-				System.out.println(queue.element().getName() + " enjoyed a " + coffee.element().getName() + " with "
-						+ coffee.element().getEnergy() + " energy");
-				Person coffeeDrinker = queue.poll(); // removes the head of the queue
+				System.out.println(queue.element().getName() + " enjoyed a " + coffee.element().getName() + " with " + coffee.element().getEnergy() + " energy");
+				Person coffeeDrinker = queue.peek(); // removes the head of the queue
 				drink(coffeeDrinker); // Gives energy depending on the coffee distributed
 				coffee.remove(); // Removes the coffee
 				System.out.println("Coffee Machine has " + coffee.size() + " drinks in reserve.");
+				System.out.println(queue.element().getName() + " has: " + queue.element().getEnergy() + " energy left");
 				
+				if(queue.element().getEnergy() < 100) {
+					queue.add(coffeeDrinker);
+					queue.poll();
+				}
+				else {
+					queue.element().setbreakTimeFalse();
+					queue.poll();
+				}
 			}
 			// queue.peek(); använder vi för att kolla om det finns något i kön. // The
 			// machine can deliver one drink to one worker each second, as long as there is

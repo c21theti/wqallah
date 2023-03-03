@@ -16,24 +16,28 @@ public class Fika {
 		kulan.giveName("Kulan");
 		kulan.generateTime();
 		kulan.startEnergy();
+		kulan.setbreakTimeFalse();
 		kulan.start(); // Starts the independent thread
 
 		Person jonsson = new Person(queue);
 		jonsson.giveName("Jonsson");
 		jonsson.generateTime();
 		jonsson.startEnergy();
+		jonsson.setbreakTimeFalse();
 		jonsson.start(); // starts the thread for jonsson
 
 		Person jonas = new Person(queue);
 		jonas.giveName("Jonas");
 		jonas.generateTime();
 		jonas.startEnergy();
+		jonas.setbreakTimeFalse();
 		jonas.start(); /// starts the thread for jonas
 
 		Person pontus = new Person(queue);
 		pontus.giveName("Pontus");
 		pontus.generateTime(); // for the randomized working time
 		pontus.startEnergy(); // for the randomized start energy
+		pontus.setbreakTimeFalse();
 		pontus.start(); /// starts the thread for pontus
 
 		// creating coffee object
